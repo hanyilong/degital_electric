@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="26.059114"
+   height="101.30077"
+   viewBox="0 0 26.059114 101.30076"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="llg.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs5" />
+  <sodipodi:namedview
+     id="namedview5"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="5.4573991"
+     inkscape:cx="129.45727"
+     inkscape:cy="93.725966"
+     inkscape:window-width="2560"
+     inkscape:window-height="1494"
+     inkscape:window-x="3829"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="页面-1" />
+  <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+  <title
+     id="title1">lianluo_red</title>
+  <desc
+     id="desc1">Created with Sketch.</desc>
+  <g
+     id="页面-1"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd"
+     transform="translate(-10.563375,-3.0623219)">
+    <g
+       id="lianluo_red"
+       transform="matrix(0.47380207,0,0,0.51403072,0.00624812,-0.05271473)">
+      <rect
+         id="矩形"
+         stroke="#979797"
+         fill="#d8d8d8"
+         fill-rule="nonzero"
+         opacity="0"
+         x="0.5"
+         y="0.5"
+         width="279"
+         height="222"
+         style="display:none" />
+      <rect
+         id="rect1"
+         fill="#ffc74d"
+         fill-rule="nonzero"
+         x="49.281727"
+         y="6.0600204"
+         width="2"
+         height="197.07143"
+         style="display:inline" />
+      <ellipse
+         id="椭圆形备份-4"
+         stroke="#ffc74d"
+         stroke-width="2"
+         transform="scale(1,-1)"
+         cx="49.781727"
+         cy="-132.04846"
+         rx="8.5"
+         ry="8.3338661" />
+      <g
+         id="编组-4备份"
+         transform="matrix(1,0,0,-1,30.281724,160.28461)">
+        <ellipse
+           id="椭圆形备份-2"
+           stroke="#ffc74d"
+           stroke-width="2"
+           cx="37.5"
+           cy="28.302654"
+           rx="8.5"
+           ry="8.3757448" />
+        <rect
+           id="rect2"
+           fill="#ffc74d"
+           fill-rule="nonzero"
+           x="37"
+           y="15"
+           width="2"
+           height="26.605307"
+           rx="1" />
+        <rect
+           id="rect3"
+           fill="#ffc74d"
+           fill-rule="nonzero"
+           x="3.5527137e-15"
+           y="0.22458801"
+           width="2"
+           height="42"
+           rx="1" />
+      </g>
+      <g
+         id="编组-2备份"
+         transform="matrix(1,0,0,-1,23.281724,156.06961)"
+         stroke="#ffc74d"
+         stroke-width="2">
+        <ellipse
+           id="ellipse3"
+           cx="8.5"
+           cy="8.3757448"
+           rx="8.5"
+           ry="8.3757448" />
+        <ellipse
+           id="椭圆形备份-3"
+           cx="8.5"
+           cy="25.127235"
+           rx="8.5"
+           ry="8.3757448" />
+      </g>
+      <g
+         id="编组-3备份-2"
+         transform="translate(46.281724,36.454121)"
+         stroke="#ffc74d"
+         stroke-width="2">
+        <polyline
+           id="路径"
+           points="0 1.97076351 4.5 0 9 1.97076351" />
+        <polyline
+           id="路径备份"
+           points="0 4.92690877 4.5 2.95614527 9 4.92690877" />
+      </g>
+      <g
+         id="编组-3备份-3"
+         transform="matrix(1,0,0,-1,46.281724,92.340047)"
+         stroke="#ffc74d"
+         stroke-width="2">
+        <polyline
+           id="polyline4"
+           points="0 1.97076351 4.5 0 9 1.97076351" />
+        <polyline
+           id="polyline5"
+           points="0 4.92690877 4.5 2.95614527 9 4.92690877" />
+      </g>
+      <rect
+         id="矩形备份-12"
+         stroke="#ffc74d"
+         stroke-width="2"
+         fill="#55ff49"
+         fill-rule="nonzero"
+         x="46.281727"
+         y="53.121853"
+         width="8"
+         height="21.570007" />
+    </g>
+  </g>
+</svg>

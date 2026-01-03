@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280px" height="223px" viewBox="0 0 280 223" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>lianluo_red</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="lianluo_red">
+            <rect id="矩形" stroke="#979797" fill="#D8D8D8" fill-rule="nonzero" opacity="0" x="0.5" y="0.5" width="279" height="222"></rect>
+            <rect id="矩形" fill="#FFC74D" fill-rule="nonzero" x="40" y="0" width="2" height="197.071424"></rect>
+            <rect id="矩形备份-3" fill="#FFC74D" fill-rule="nonzero" x="240" y="0" width="2" height="197.071424"></rect>
+            <ellipse id="椭圆形备份-4" stroke="#FFC74D" stroke-width="2" transform="translate(40.500000, 125.988448) scale(-1, 1) rotate(-180.000000) translate(-40.500000, -125.988448) " cx="40.5" cy="125.988448" rx="8.5" ry="8.33386619"></ellipse>
+            <g id="编组-4备份" transform="translate(44.000000, 132.724588) scale(-1, 1) rotate(-180.000000) translate(-44.000000, -132.724588) translate(21.000000, 111.224588)">
+                <ellipse id="椭圆形备份-2" stroke="#FFC74D" stroke-width="2" cx="37.5" cy="28.3026537" rx="8.5" ry="8.37574492"></ellipse>
+                <rect id="矩形" fill="#FFC74D" fill-rule="nonzero" x="37" y="15" width="2" height="26.6053074" rx="1"></rect>
+                <rect id="矩形" fill="#FFC74D" fill-rule="nonzero" x="3.55271368e-15" y="0.224588" width="2" height="42" rx="1"></rect>
+            </g>
+            <g id="编组-2备份" transform="translate(22.500000, 133.009591) scale(-1, 1) rotate(-180.000000) translate(-22.500000, -133.009591) translate(14.000000, 116.009591)" stroke="#FFC74D" stroke-width="2">
+                <ellipse id="椭圆形备份-2" cx="8.5" cy="8.37574492" rx="8.5" ry="8.37574492"></ellipse>
+                <ellipse id="椭圆形备份-3" cx="8.5" cy="25.1272347" rx="8.5" ry="8.37574492"></ellipse>
+            </g>
+            <rect id="矩形" fill="#FFC74D" fill-rule="nonzero" x="40" y="196.581197" width="202" height="1.96090969" rx="0.980454845"></rect>
+            <g id="编组-3备份-2" transform="translate(37.000000, 30.394100)" stroke="#FFC74D" stroke-width="2">
+                <polyline id="路径" points="0 1.97076351 4.5 0 9 1.97076351"></polyline>
+                <polyline id="路径备份" points="0 4.92690877 4.5 2.95614527 9 4.92690877"></polyline>
+            </g>
+            <g id="编组-3备份-3" transform="translate(41.500000, 83.780026) scale(-1, 1) rotate(-180.000000) translate(-41.500000, -83.780026) translate(37.000000, 81.280026)" stroke="#FFC74D" stroke-width="2">
+                <polyline id="路径" points="0 1.97076351 4.5 0 9 1.97076351"></polyline>
+                <polyline id="路径备份" points="0 4.92690877 4.5 2.95614527 9 4.92690877"></polyline>
+            </g>
+            <rect id="矩形备份-12" stroke="#FFC74D" stroke-width="2" fill="#55FF49" fill-rule="nonzero" x="37" y="47.0618326" width="8" height="21.5700066"></rect>
+        </g>
+    </g>
+</svg>

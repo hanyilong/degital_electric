@@ -1,0 +1,10 @@
+export { getPercentComponentRuntime } from './Percent';
+export { getBarChartComponentRuntime } from './BarChart';
+export { getLineChartComponentRuntime } from './LineChart';
+export { getPieChartComponentRuntime } from './PieChart';
+export { getScatterChartComponentRuntime } from './ScatterChart';
+export { getTableComponentRuntime } from './Table';
+export { getSwitchComponentRuntime } from './Switch';
+export { getButtonComponentRuntime } from './Button';
+export { getIFrameComponentRuntime } from './IFrame';
+export { getVideoComponentRuntime } from './Video';

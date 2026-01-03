@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="8.8997364"
+   height="130.12325"
+   viewBox="0 0 8.8997364 130.12325"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="udbpdg.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs11" />
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="4.1965517"
+     inkscape:cx="149.76582"
+     inkscape:cy="125.22186"
+     inkscape:window-width="2560"
+     inkscape:window-height="1494"
+     inkscape:window-x="3829"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="wh_" />
+  <title
+     id="title1">wh_</title>
+  <g
+     id="页面-2"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd"
+     transform="translate(-0.19269042,-0.71487264)">
+    <g
+       id="wh_"
+       transform="matrix(-1,0,0,1,300,0)"
+       fill-rule="nonzero">
+      <rect
+         id="矩形备份-217"
+         fill="#000000"
+         opacity="0"
+         x="0"
+         y="0"
+         width="300"
+         height="290" />
+      <g
+         id="编组-15备份-2"
+         transform="matrix(0.6293064,0,0,0.48193797,290.32299,0.71487264)">
+        <g
+           id="编组-7">
+          <rect
+             id="矩形"
+             fill="#ffc74d"
+             x="7"
+             y="104"
+             width="2"
+             height="55" />
+          <rect
+             id="矩形备份-12"
+             stroke="#ffc74d"
+             stroke-width="2"
+             fill="#ffffff"
+             x="4"
+             y="121"
+             width="8"
+             height="21.570007" />
+          <rect
+             id="rect1"
+             fill="#ffc74d"
+             x="7"
+             y="0"
+             width="2"
+             height="97" />
+          <g
+             id="编组-12"
+             transform="translate(0,94)"
+             fill="#ffc74d">
+            <g
+               id="编组-11"
+               transform="rotate(45,2.8786797,10.12132)">
+              <rect
+                 id="rect2"
+                 transform="rotate(180,1,5)"
+                 x="0"
+                 y="-8.5265128e-14"
+                 width="2"
+                 height="10" />
+              <rect
+                 id="rect3"
+                 transform="rotate(90,5,1)"
+                 x="4"
+                 y="-4"
+                 width="2"
+                 height="10" />
+            </g>
+            <g
+               id="编组-11备份"
+               transform="rotate(45,-6.7781746,14.12132)">
+              <rect
+                 id="rect4"
+                 transform="rotate(180,1,5)"
+                 x="0"
+                 y="-8.5265128e-14"
+                 width="2"
+                 height="10" />
+              <rect
+                 id="rect5"
+                 transform="rotate(90,5,1)"
+                 x="4"
+                 y="-4"
+                 width="2"
+                 height="10" />
+            </g>
+          </g>
+          <g
+             id="g10"
+             transform="rotate(180,8,84.5)"
+             fill="#ffc74d">
+            <g
+               id="g7"
+               transform="rotate(45,2.8786797,10.12132)">
+              <rect
+                 id="rect6"
+                 transform="rotate(180,1,5)"
+                 x="0"
+                 y="-8.5265128e-14"
+                 width="2"
+                 height="10" />
+              <rect
+                 id="rect7"
+                 transform="rotate(90,5,1)"
+                 x="4"
+                 y="-4"
+                 width="2"
+                 height="10" />
+            </g>
+            <g
+               id="g9"
+               transform="rotate(45,-6.7781746,14.12132)">
+              <rect
+                 id="rect8"
+                 transform="rotate(180,1,5)"
+                 x="0"
+                 y="-8.5265128e-14"
+                 width="2"
+                 height="10" />
+              <rect
+                 id="rect9"
+                 transform="rotate(90,5,1)"
+                 x="4"
+                 y="-4"
+                 width="2"
+                 height="10" />
+            </g>
+          </g>
+        </g>
+        <rect
+           id="rect10"
+           fill="#ffc74d"
+           x="7"
+           y="166"
+           width="2"
+           height="104" />
+      </g>
+    </g>
+  </g>
+</svg>

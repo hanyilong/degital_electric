@@ -1,0 +1,1 @@
+http-server -a 0.0.0.0 -p 8003 --cors=http://localhost:8081/

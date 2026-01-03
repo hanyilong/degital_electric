@@ -1,0 +1,729 @@
+/* index.css */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* App.css */
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px 0;
+}
+
+.sidebar h2 {
+  padding: 0 20px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.sidebar-menu li:hover {
+  background-color: #34495e;
+}
+
+.sidebar-menu a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* graph.less */
+.app-header {
+  width: 100%;
+  min-height: 50px;
+  position: relative;
+  border: 1px solid #dfe3e8;
+  margin: 4px;
+  border-radius: 5px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.app-header button {
+  border: none;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.app-header button:hover {
+  background-color: #e6f7ff;
+  color: #1890ff;
+  border-color: #91d5ff;
+}
+
+.app-header button:active {
+  background-color: #bae7ff;
+}
+
+.app-header button.ant-btn-text {
+  background-color: transparent;
+}
+
+.app-header button.ant-btn-text:hover {
+  background-color: rgba(24, 144, 255, 0.1);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  /* 让根元素高度 = 浏览器视口高度 */
+}
+input,
+select,
+button {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: background-color 0.2s;
+}
+
+button.active {
+  background-color: #e0e0e0;
+}
+.web-scada-app {
+  display: flex;
+  flex-direction: column;
+  /* 子元素垂直排列 */
+  height: 100%;
+}
+
+.web-scada-body {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+
+  /* 左侧栏容器 */
+  .leftbar-container {
+    width: 152px;
+    height: 100%;
+    position: relative;
+    border-right: 1px solid #dfe3e8;
+    margin-right: 8px;
+    margin-left: 8px;
+    border-radius: 5px;
+    box-shadow: 0 12px 5px -10px rgb(0 0 0 / 10%), 0 0 4px 0 rgb(0 0 0 / 10%);
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+
+  /* 左侧栏收缩状态 */
+  .leftbar-container.collapsed {
+    width: 50px;
+  }
+
+  /* 主内容区域 */
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    /* 允许内容收缩到最小宽度 */
+    height: 100%;
+    margin: 0 4px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    background: #aeababa5;
+  }
+  .app-content{
+    margin: 20px;
+  }
+
+  /* 主内容区域 - 左侧栏收缩时 */
+  .main-content.left-collapsed {
+    margin-left: 0;
+  }
+
+  /* 主内容区域 - 设置面板收缩时 */
+  .main-content.right-collapsed {
+    margin-right: 0;
+  }
+
+  /* 设置面板容器 */
+  .settings-container {
+    width: 240px;
+    height: 100%;
+    position: relative;
+    border-left: 1px solid #dfe3e8;
+    margin-right: 1px;
+    margin-left: 1px;
+    border-radius: 5px;
+    box-shadow: 0 12px 5px -10px rgb(0 0 0 / 10%), 0 0 4px 0 rgb(0 0 0 / 10%);
+    transition: width 0.3s ease;
+    overflow-y: auto;
+  }
+
+  /* 设置面板收缩状态 */
+  .settings-container.collapsed {
+    width: 50px;
+  }
+
+  /* 收缩按钮通用样式 */
+  .collapse-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #f0f2f5;
+    border-radius: 4px;
+    z-index: 10;
+    padding: 8px 4px;
+    border: 1px solid #d9d9d9;
+    transition: all 0.3s ease;
+  }
+
+  /* 左侧栏收缩按钮 */
+  .leftbar-collapse-btn {
+    right: -10px;
+  }
+
+  /* 设置面板收缩按钮 */
+  .settings-collapse-btn {
+    left: -10px;
+  }
+
+  /* 收缩按钮悬停效果 */
+  .collapse-btn:hover {
+    background: #e6f7ff;
+    border-color: #91d5ff;
+    color: #1890ff;
+  }
+
+  /* 收缩状态下隐藏组件内容 */
+  .leftbar-container.collapsed .app-left {
+    transform: translateX(-100%);
+    width: 0;
+  }
+
+  .settings-container.collapsed .app-right {
+    transform: translateX(100%);
+    width: 0;
+  }
+
+  /* 原有样式兼容性 */
+  .app-left {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .app-right {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .graph-container {
+    /* 超出高度时显示垂直滚动条 */
+    overflow-y: auto;
+    /* 如需横向滚动可添加 overflow-x: auto */
+    /* overflow-x: auto; */
+    border: 1px solid #e8e8e8;
+    /* 可选：添加边框区分容器 */
+  }
+
+  .x6-widget-stencil {
+    background-color: #fff;
+  }
+
+  .x6-widget-stencil-title {
+    background-color: #fff;
+  }
+
+  .x6-widget-stencil-group-title {
+    background-color: #fff !important;
+  }
+
+  .x6-widget-transform {
+    margin: -1px 0 0 -1px;
+    padding: 0px;
+    border: 1px solid #239edd;
+  }
+
+  .x6-widget-transform>div {
+    border: 1px solid #239edd;
+  }
+
+  .x6-widget-transform>div:hover {
+    background-color: #3dafe4;
+  }
+
+  .x6-widget-transform-active-handle {
+    background-color: #3dafe4;
+  }
+
+  .x6-widget-transform-resize {
+    border-radius: 0;
+  }
+
+  .x6-widget-selection-box {
+    border: 2px dashed #239edd;
+  }
+
+  .x6-widget-selection-inner {
+    border: 1px solid #239edd;
+  }
+
+  /* 全局 CSS 文件中添加 */
+  .x6-edge-vertex {
+    fill: transparent !important;
+    /* 填充透明 */
+    stroke: transparent !important;
+    /* 边框透明 */
+  }
+
+  .x6-edge-vertex-ghost {
+    fill: transparent !important;
+    stroke: transparent !important;
+  }
+}
+
+.image-display-form {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  max-width: 400px;
+  margin: 1px auto;
+  padding: 1px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.color-picker {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.form-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  flex: 1;
+}
+
+.form-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 80px;
+  margin: 0 5px;
+}
+
+.checkbox-label {
+  margin-left: 5px;
+}
+
+.tabs-container {
+  max-width: 800px;
+  padding: 0rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.tabs-header {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tab-button {
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+.tab-button:hover {
+  color: #2c3e50;
+}
+
+.tab-button.active {
+  color: #3498db;
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #3498db;
+  border-radius: 3px 3px 0 0;
+}
+
+.tabs-content {
+  padding: 0px;
+  /* width: 230px; */
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+.tab-content p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-label {
+  min-width: 100px;
+  margin-right: 1px;
+  text-align: right;
+}
+
+.size-inputs {
+  display: flex;
+  align-items: center;
+}
+
+.unit {
+  margin-left: 5px;
+  color: #666;
+}
+
+.panel {
+  font-family: "微软雅黑", sans-serif;
+  max-width: 320px;
+  margin: 5px auto;
+  padding: 5px;
+}
+
+.control-group {
+  margin-bottom: 16px;
+  padding: 8px;
+  background-color: #fafafa;
+  border-radius: 4px;
+}
+
+.control-group h3 {
+  font-size: 14px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1890ff;
+  color: #333;
+  font-weight: 600;
+}
+
+.opacity-input,
+.layout-row,
+.text-row,
+.fill-row,
+.stroke-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  min-height: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 1px;
+}
+
+/* 优化标签样式 */
+.stroke-row label,
+.fill-row label,
+.text-row label {
+  width: 60px;
+  text-align: right;
+  font-size: 14px;
+  color: #333;
+  flex-shrink: 0;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 36px;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* 标准化输入控件样式 */
+.stroke-row input[type="number"],
+.stroke-row select,
+.fill-row select,
+.fill-row input[type="color"] {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* 优化颜色选择器样式 */
+.stroke-row input[type="color"] {
+  width: 40px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* 优化按钮组样式 */
+.text-row button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-weight: bold;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.text-row button:hover {
+  background-color: #f5f5f5;
+}
+
+.text-row button.active {
+  background-color: #1890ff;
+  color: #fff;
+  border-color: #1890ff;
+}
+
+/* 优化标题样式 */
+.control-group h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #1890ff;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+}
+
+/* 优化面板样式 */
+.panel {
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #fafafa;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 16px;
+}
+
+/* 优化控制组间距 */
+.control-group {
+  margin-bottom: 24px;
+}
+
+/* 优化表单行样式 */
+.stroke-row,
+.fill-row,
+.text-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  min-height: 36px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 8px;
+}
+
+/* 优化Ant Design表单项样式 */
+.stroke-row .ant-form-item,
+.fill-row .ant-form-item,
+.text-row .ant-form-item {
+  margin-bottom: 0;
+  flex: 1;
+  margin-right: 0;
+}
+
+/* 优化颜色选择器和下拉框组合样式 */
+.fill-row {
+  align-items: center;
+  gap: 8px;
+}
+
+.fill-row .ant-form-item {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.fill-row input[type="color"] {
+  width: 40px;
+  flex-shrink: 0;
+}
+
+/* 优化数字输入框宽度 */
+.stroke-row input[type="number"] {
+  width: 80px;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+/* 优化线条粗细输入框宽度，确保内容不截断 */
+.stroke-row input[type="number"][name="strokeWidth"] {
+  width: 90px;
+  min-width: 90px;
+  padding-right: 4px;
+}
+
+/* 优化连接器下拉框宽度 */
+.stroke-row select[name="connector"] {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+/* 优化弧度输入框宽度 */
+.stroke-row input[type="number"][name="rx"],
+.stroke-row input[type="number"][name="ry"] {
+  width: 60px;
+  flex-shrink: 0;
+}
+
+/* 优化字体选择下拉框 */
+.stroke-row select[name="font"] {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* 优化线条类型下拉框 */
+.stroke-row select[name="strokeDasharray"] {
+  width: 100px;
+  flex-shrink: 0;
+}
+
+/* 确保输入控件不被截断 */
+.stroke-row input,
+.stroke-row select,
+.fill-row input,
+.fill-row select {
+  overflow: visible;
+}
+
+/* 优化整体表单容器 */
+.image-display-form .ant-form {
+  padding: 0;
+  margin: 0;
+}
+
+/* 优化设置面板宽度 */
+.settings-container {
+  width: 280px;
+  overflow-y: auto;
+}
+
+/* 优化设置面板内容 */
+.settings-container .tabs-container {
+  padding: 8px;
+}
+
+.stroke-multi-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+.stroke-multi-row-text {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.stroke-multi-row-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.stroke-multi-row-image {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-display-form .ant-card-body {
+  padding: 1px;
+  border-radius: 4px;
+}
+.my-json-editor .cm-gutters {
+  display: none !important; /* 隐藏行号容器 */
+}

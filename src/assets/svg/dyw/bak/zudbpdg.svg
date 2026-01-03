@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="290px" viewBox="0 0 300 290" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>wh</title>
+    <g id="页面-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="wh" fill-rule="nonzero">
+            <rect id="矩形备份-217" fill="#000000" opacity="0" x="0" y="0" width="300" height="290"></rect>
+            <g id="编组-15备份-2" transform="translate(142.000000, 0.000000)">
+                <g id="编组-7">
+                    <rect id="矩形" fill="#FFC74D" x="7" y="104" width="2" height="55"></rect>
+                    <rect id="矩形备份-12" stroke="#FFC74D" stroke-width="2" fill="#FFFFFF" x="4" y="121" width="8" height="21.5700066"></rect>
+                    <rect id="矩形" fill="#FFC74D" x="7" y="0" width="2" height="97"></rect>
+                    <g id="编组-12" transform="translate(0.000000, 94.000000)" fill="#FFC74D">
+                        <g id="编组-11" transform="translate(8.000000, 8.000000) rotate(45.000000) translate(-8.000000, -8.000000) translate(3.000000, 3.000000)">
+                            <rect id="矩形" transform="translate(1.000000, 5.000000) rotate(-180.000000) translate(-1.000000, -5.000000) " x="0" y="-8.52651283e-14" width="2" height="10"></rect>
+                            <rect id="矩形" transform="translate(5.000000, 1.000000) rotate(90.000000) translate(-5.000000, -1.000000) " x="4" y="-4" width="2" height="10"></rect>
+                        </g>
+                        <g id="编组-11备份" transform="translate(8.000000, 16.000000) rotate(45.000000) translate(-8.000000, -16.000000) translate(3.000000, 11.000000)">
+                            <rect id="矩形" transform="translate(1.000000, 5.000000) rotate(-180.000000) translate(-1.000000, -5.000000) " x="0" y="-8.52651283e-14" width="2" height="10"></rect>
+                            <rect id="矩形" transform="translate(5.000000, 1.000000) rotate(90.000000) translate(-5.000000, -1.000000) " x="4" y="-4" width="2" height="10"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-12" transform="translate(8.000000, 157.000000) rotate(-180.000000) translate(-8.000000, -157.000000) translate(0.000000, 145.000000)" fill="#FFC74D">
+                        <g id="编组-11" transform="translate(8.000000, 8.000000) rotate(45.000000) translate(-8.000000, -8.000000) translate(3.000000, 3.000000)">
+                            <rect id="矩形" transform="translate(1.000000, 5.000000) rotate(-180.000000) translate(-1.000000, -5.000000) " x="0" y="-8.52651283e-14" width="2" height="10"></rect>
+                            <rect id="矩形" transform="translate(5.000000, 1.000000) rotate(90.000000) translate(-5.000000, -1.000000) " x="4" y="-4" width="2" height="10"></rect>
+                        </g>
+                        <g id="编组-11备份" transform="translate(8.000000, 16.000000) rotate(45.000000) translate(-8.000000, -16.000000) translate(3.000000, 11.000000)">
+                            <rect id="矩形" transform="translate(1.000000, 5.000000) rotate(-180.000000) translate(-1.000000, -5.000000) " x="0" y="-8.52651283e-14" width="2" height="10"></rect>
+                            <rect id="矩形" transform="translate(5.000000, 1.000000) rotate(90.000000) translate(-5.000000, -1.000000) " x="4" y="-4" width="2" height="10"></rect>
+                        </g>
+                    </g>
+                </g>
+                <rect id="矩形" fill="#FFC74D" x="7" y="166" width="2" height="104"></rect>
+            </g>
+            <rect id="矩形" fill="#FFC74D" x="0" y="268" width="151" height="2"></rect>
+            <rect id="矩形备份-4" fill="#FFC74D" x="149" y="0" width="151" height="2"></rect>
+        </g>
+    </g>
+</svg>
