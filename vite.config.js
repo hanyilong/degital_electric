@@ -17,15 +17,23 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         preview: resolve(__dirname, 'preview.html'),
-        
+        preview3d: resolve(__dirname, 'preview3d.html'),
+        preview3d1: resolve(__dirname, 'preview3d1.html'),
+        preview3DCabinet: resolve(__dirname, 'preview3DCabinet.html'),
       }
     }
   },
   server: {
-    port: 3000,
+    host: true,
+    port: 3001,
+    strictPort: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080/api',
+        target: 'http://localhost:8081/api',
+        changeOrigin: true
+      },
+      '/graph': {
+        target: 'http://localhost:8081',
         changeOrigin: true
       }
     },

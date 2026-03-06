@@ -617,7 +617,7 @@ const TabsExample = forwardRef<TabsExampleProps, any>((props, parentRef) => {
           const attributes = JSON.parse(model.attributes || '{}');
           if (attributes) {
             Object.keys(attributes).forEach(key => {
-              pointNames.push({key, name: attributes[key].name || key});
+              pointNames.push({ key, name: attributes[key].name || key });
             });
           }
           setDeviceProperties(pointNames);
@@ -677,32 +677,28 @@ const TabsExample = forwardRef<TabsExampleProps, any>((props, parentRef) => {
       if (component) {
         if (eventType === 'systemComponentPropsDefaultValue') {
           // 只有当值真正变化时才更新状态
-          if (systemComponentConfigDefaultValue !== eventValue) {
-            setSystemComponentConfigDefaultValue(eventValue);
-            const componentDefaultValue = JSON.parse(eventValue);
-            const nodeProps = { defaultValue: componentDefaultValue }
-            component.setExposeToNodeProps(nodeProps);
-          }
+          setSystemComponentConfigDefaultValue(eventValue);
+          const componentDefaultValue = JSON.parse(eventValue);
+          const nodeProps = { defaultValue: componentDefaultValue }
+          component.setExposeToNodeProps(nodeProps);
         } else if (eventType === 'systemComponentPropsTemplate') {
           // 只有当值真正变化时才更新状态
-          if (systemComponentConfigTemplate !== eventValue) {
-            setSystemComponentConfigTemplate(eventValue);
-            const nodeProps = { template: eventValue }
-            // 模板变化的时候，如果API相关配置也可用，则根据API数据和模板生成数据，并更新到组件中
-            const data = apiConfigure?.responseData
-            if (data) {
-              try {
-                const dataJson = JSON.parse(data)
-                const componentDefaultValue = renderSystemComponentTemplate(eventValue, dataJson.data);
-                if (componentDefaultValue) {
-                  nodeProps.defaultValue = componentDefaultValue
-                }
-              } catch (error) {
-                console.error('模板渲染失败:', error);
+          setSystemComponentConfigTemplate(eventValue);
+          const nodeProps = { template: eventValue }
+          // 模板变化的时候，如果API相关配置也可用，则根据API数据和模板生成数据，并更新到组件中
+          const data = apiConfigure?.responseData
+          if (data) {
+            try {
+              const dataJson = JSON.parse(data)
+              const componentDefaultValue = renderSystemComponentTemplate(eventValue, dataJson.data);
+              if (componentDefaultValue) {
+                nodeProps.defaultValue = componentDefaultValue
               }
+            } catch (error) {
+              console.error('模板渲染失败:', error);
             }
-            component.setExposeToNodeProps(nodeProps);
           }
+          component.setExposeToNodeProps(nodeProps);
         }
       }
     }

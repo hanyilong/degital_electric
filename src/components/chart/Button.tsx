@@ -41,6 +41,7 @@ const defaultValue : ButtonProps = {
     type: 'primary',
     color: 'red',
     shape: 'circle',
+    size: 'default',
     text: '按钮',
     onClick: () => {
       console.log('按钮被点击了');
@@ -161,7 +162,7 @@ const ButtonComponent: React.FC<ComponentProps> = ({
       {/* antd 的圆形 Progress 组件，size 接收数字（宽高一致）或 { width, height } */}
       {/* <Progress type="circle" percent={componentProps.percent} size={size.width} /> */}
       {/* <Button type="{componentProps.type}" color={componentProps.color} shape={componentProps.shape} styles={componentProps.styles} onClick={componentProps.onClick} size={size.width}  /> */}
-      <Button  size='large' type='primary' onClick={componentProps.onClick}>{componentProps.text}</Button>
+      <Button size={componentProps.size} type={componentProps.type} onClick={componentProps.onClick}>{componentProps.text}</Button>
     </div>
   );
 };

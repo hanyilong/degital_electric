@@ -223,14 +223,41 @@ function AlarmDataQuery() {
       title: '告警时间',
       dataIndex: 'alarmTime',
       width: 180,
-      key: 'alarmTime'
+      key: 'alarmTime',
+      render: (time) => {
+        if (!time) return '-';
+        const date = new Date(time);
+        return date.toLocaleString('zh-CN', {
+          timeZone: 'Asia/Shanghai',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(/\//g, '-');
+      }
     },
     {
       title: '处理时间',
       dataIndex: 'resolveTime',
       width: 180,
       key: 'resolveTime',
-      render: (resolveTime) => resolveTime || '-'
+      render: (time) => {
+        if (!time) return '-';
+        const date = new Date(time);
+        return date.toLocaleString('zh-CN', {
+          timeZone: 'Asia/Shanghai',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(/\//g, '-');
+      }
     },
     {
       title: '操作',

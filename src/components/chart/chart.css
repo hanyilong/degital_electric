@@ -21,3 +21,258 @@
     border-radius: 6px;
   }
 }
+/* once electric box diagram styles */
+.once-root { display: block; }
+
+.once-container {
+  display: flex;
+  overflow-x: auto;
+  /* hide any vertical overflow so tall cabinet images cannot spill over the
+     horizontal bus line at the top */
+  overflow-y: hidden;
+  padding: 4px;
+  position: relative;
+}
+
+.once-cabinet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 0px;
+  min-width: 180px;
+  width: 180px;
+  flex: 0 0 180px;
+}
+  /* keep children close together so metrics sit immediately below images */
+  gap: 6px;
+
+.cabinet-img {
+  width: 180px !important;  /* enforce exact width */
+  height: 350px !important; /* enforce exact height */
+  max-width: none; /* disable previous max constraint */
+  display: block;
+  margin: 0; /* remove top/bottom spacing so it sits flush with device image */
+  /* if the device image is overlapping with negative margin, make sure
+     this image sits correctly by resetting any default stacking */
+  position: relative;
+}
+
+.cabinet-name {
+  margin-top: 4px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+}
+
+.cabinet-device-img {
+  /* width: 180px !important;
+  height: 114px !important; */
+  object-fit: contain;
+  display: block;
+  margin: 0; /* ensure no bottom gap before cabinet image */
+  /* pull device image down slightly so its bottom edge aligns seamlessly
+     with the subsequent cabinet image (negative margin compensates for
+     any rendering gap or sub‑pixel rounding). adjust value if needed */
+  margin-bottom: 0;
+}
+
+.cabinet-metrics {
+  margin-top: 4px; /* small gap so metrics sit directly under images */
+  background: rgba(0,0,0,0.85);
+  padding: 8px 10px;
+  border-radius: 4px;
+  color: #0f0;
+  font-size: 12px;
+  line-height: 1.4;
+  width: 120px;
+  text-align: left;
+}
+
+.bus-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: gold;
+  top: 260px; /* aligns roughly under cabinet name; update via measurement */
+  z-index: 0; /* raise above cabinets so any overlap is hidden */
+}
+
+/* vertical bus per cabinet */
+.cabinet-loops-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.cabinet-vertical-bus {
+  position: absolute;
+  left: 0;      /* align flush to left edge of cabinet column */
+  width: 2px;
+  background: gold;
+  top: 0;
+  height: 0px; /* set dynamically */
+  z-index: 2;
+}
+
+
+
+.cabinet-loops {
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  /* align children to the left so images sit next to the vertical bus */
+  align-items: flex-start;
+  /* small left inset so content sits immediately to the right of the 2px bus */
+  padding-left: 2px;
+  /* vertical gap between watches */
+  gap: 30px;
+  /* ensure first watch sits below the horizontal bus */
+  padding-top: 30px;
+}
+
+.cabinet-loop {
+  display: flex;
+  /* keep rows: image/name on left, metrics on right */
+  flex-direction: row;
+  align-items: flex-start;
+  background: transparent;
+  border-radius: 3px;
+  padding: 2px 0;
+  font-size: 10px;
+  margin: 0;
+  margin-left: 0;
+}
+
+.loop-img-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loop-img {
+  width: 90px;
+  height: 30px;
+  object-fit: cover;
+  display: block;
+  margin-left: 0;
+}
+
+.loop-name {
+  margin-top: 4px;
+  font-size: 11px;
+  text-align: center;
+  width: 90px;
+  word-break: break-word;
+  color: #fff;
+}
+
+.loop-metrics {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  color: #0f0;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.loop-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.loop-metrics {
+  font-size: 10px;
+  color: #0f0;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+.loop-img {
+  width: 90px;
+  height: 30px;
+  object-fit: cover;
+  display: block;
+  margin-left: 0;
+}
+
+.loop-name {
+  margin-top: 4px;
+  font-size: 11px;
+  text-align: center;
+  width: 90px;
+  word-break: break-word;
+  color: #fff;
+}
+
+.once-placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+/* energy flow component styles */
+.energy-flow-root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  color: #fff;
+}
+
+.energy-node {
+  padding: 8px 12px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 4px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.energy-arrow {
+  margin: 0 8px;
+  color: #0f0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* hierarchy three-column layout */
+.energy-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.energy-item {
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 4px 0;
+  min-width: 80px;
+  text-align: center;
+}
+
+.energy-value {
+  margin-top: 4px;
+  font-weight: bold;
+  color: #0f0;
+}
+
+.energy-lines {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.energy-lines path {
+  stroke: #0f0;
+  fill: none;
+  stroke-width: 2px;
+}

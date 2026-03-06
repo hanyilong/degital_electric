@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="292px" height="588px" viewBox="0 0 292 588" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 7备份 6@3x</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-86.000000, -1897.000000)">
+            <g id="编组-7备份-6" transform="translate(86.000000, 1897.000000)">
+                <rect id="矩形备份-17" fill-opacity="0" fill="#D8D8D8" x="0" y="1.00170358" width="292" height="586.998296" rx="8"></rect>
+                <rect id="矩形" fill="#FFC74D" x="145" y="0" width="2" height="153.260647"></rect>
+                <ellipse id="椭圆形备份-4" stroke="#FFC74D" stroke-width="2" cx="145.5" cy="244.916525" rx="8.5" ry="8.51448041"></ellipse>
+                <g id="编组-4备份" transform="translate(119.000000, 231.393526)">
+                    <ellipse id="椭圆形备份-2" stroke="#FFC74D" stroke-width="2" cx="8.5" cy="13.5229983" rx="8.5" ry="8.51448041"></ellipse>
+                    <rect id="矩形" fill="#FFC74D" x="8" y="0" width="2" height="27.0459966" rx="1"></rect>
+                </g>
+                <g id="编组-2备份" transform="translate(155.000000, 236.402044)" stroke="#FFC74D" stroke-width="2">
+                    <ellipse id="椭圆形备份-2" cx="8.5" cy="8.51448041" rx="8.5" ry="8.51448041"></ellipse>
+                    <ellipse id="椭圆形备份-3" cx="8.5" cy="25.5434412" rx="8.5" ry="8.51448041"></ellipse>
+                </g>
+                <rect id="矩形备份-5" fill="#FFC74D" x="163" y="231.393526" width="2" height="44.0749574" rx="1"></rect>
+                <rect id="矩形备份-6" fill="#FFC74D" x="145" y="147.250426" width="2" height="146.248722"></rect>
+                <rect id="矩形备份-7" fill="#FFC74D" x="106" y="227.386712" width="40" height="2.00340716" rx="1.00170358"></rect>
+                <rect id="矩形备份-8" fill="#FFC74D" x="106" y="238.405451" width="2" height="25.0425894" rx="1"></rect>
+                <rect id="矩形备份-9" fill="#FFC74D" x="101" y="262.446337" width="12" height="2.00340716" rx="1.00170358"></rect>
+                <rect id="矩形备份-10" fill="#FFC74D" x="103" y="265.451448" width="8" height="2.00340716" rx="1.00170358"></rect>
+                <rect id="矩形备份-11" fill="#FFC74D" x="105" y="268.456559" width="4" height="2.00340716" rx="1.00170358"></rect>
+                <g id="编组-3备份-2" transform="translate(141.583684, 97.165247)" stroke="#FFC74D" stroke-width="2">
+                    <polyline id="路径" points="0 2.00340716 4.5 0 9 2.00340716"></polyline>
+                    <polyline id="路径备份" points="0 5.00851789 4.5 3.00511073 9 5.00851789"></polyline>
+                </g>
+                <g id="编组-3备份-3" transform="translate(146.083684, 150.756388) scale(1, -1) translate(-146.083684, -150.756388) translate(141.583684, 148.252129)" stroke="#FFC74D" stroke-width="2">
+                    <polyline id="路径" points="0 2.00340716 4.5 0 9 2.00340716"></polyline>
+                    <polyline id="路径备份" points="0 5.00851789 4.5 3.00511073 9 5.00851789"></polyline>
+                </g>
+                <rect id="矩形备份-12" stroke="#FFC74D" stroke-width="2" fill="#FF4949" x="142" y="114.194208" width="8" height="22.0374787"></rect>
+                <rect id="矩形备份-13" stroke="#FFC74D" stroke-width="2" x="104" y="243.413969" width="6" height="13.0221465" rx="1"></rect>
+                <polygon id="矩形备份-14" fill="#FFC74D" transform="translate(108.000000, 237.904600) rotate(-330.000000) translate(-108.000000, -237.904600) " points="106.99773 235.400668 108.998582 235.402143 109.00227 240.408532 107.001418 240.407056"></polygon>
+                <rect id="矩形备份-15" fill="#FFC74D" transform="translate(107.000000, 231.894378) rotate(-360.000000) translate(-107.000000, -231.894378) " x="106" y="229.390119" width="2" height="5.00851789"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

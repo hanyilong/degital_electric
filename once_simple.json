@@ -1,0 +1,205 @@
+{
+  "code": 200,
+  "data": {
+    "title": "演示低压一次图",
+    "reloadTime": 30,
+    "type": "LOW_VOLTAGE_SWITCHGEAR",
+    "onceInfoId": 39,
+    "cabinets": [
+      {
+        "watches": null,
+        "id": 182,
+        "name": "AA1 401低压进线柜",
+        "leftLine": 0,
+        "rightLine": 0,
+        "type": "POWER_LINE_CABINET",
+        "imgDeviceUrl": "http://platform.dianyunwei.com/avatar/DEVICE_TYPE_MANAGE/变压器-20230921060119852.svg",
+        "imgUrl": "http://platform.dianyunwei.com/avatar/DISTRIBUTION_TYPE_MANAGE/进线柜-20210514030152561.svg",
+        "message": null,
+        "status": 1
+      },
+      {
+        "fonts": null,
+        "watches": [
+          {
+            "id": 595,
+            "name": "411-2 一期宿舍",
+            "loopName": "411-2一期宿舍",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 594,
+            "name": "411-1 园林照明",
+            "loopName": "411-1园林照明",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 596,
+            "name": "411-3 办公照明AL-1 2",
+            "loopName": "411-3办公室照明AL-12",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 597,
+            "name": "411-4 消防",
+            "loopName": "411-4消防",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 598,
+            "name": "411-5 办公照明AL-3 4",
+            "loopName": "411-5办公室照明AL-34",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 599,
+            "name": "411-6 门卫",
+            "loopName": "411-6门卫",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          }
+        ],
+        "id": 183,
+        "name": "AA3出线柜 ",
+        "leftLine": 1,
+        "rightLine": 1,
+        "type": "HIGH_PRESSURE_CABINET",
+        "imgDeviceUrl": null,
+        "imgUrl": "http://platform.dianyunwei.com/avatar/DISTRIBUTION_TYPE_MANAGE/高压进线柜-20210513042414795.svg",
+        "status": 1
+      },
+      {
+        "fonts": null,
+        "watches": [
+          {
+            "id": 580,
+            "name": "413-1 新网络机房老时装车间",
+            "loopName": "413-1新网络机房老时装车间",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 581,
+            "name": "413-2备用",
+            "loopName": "413-2信息机房供电主",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 582,
+            "name": "413-3二期宿舍",
+            "loopName": "413-3二期宿舍",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 583,
+            "name": "413-4防火卷帘",
+            "loopName": "413-4防火卷帘",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 584,
+            "name": "413-5 网络机房ALE-RD",
+            "loopName": "413-5网络机房ALE-RD",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 585,
+            "name": "413-6 库房",
+            "loopName": "413-6库房",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 586,
+            "name": "413-7 备用",
+            "loopName": "413-7备用",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          }
+        ],
+        "id": 184,
+        "name": "AA5出线柜",
+        "leftLine": 1,
+        "rightLine": 1,
+        "type": "HIGH_PRESSURE_CABINET",
+        "imgDeviceUrl": null,
+        "imgUrl": "http://platform.dianyunwei.com/avatar/DISTRIBUTION_TYPE_MANAGE/高压进线柜-20210513042414795.svg",
+        "status": 1
+      },
+      {
+        "watches": [
+          {
+            "id": 579,
+            "name": "402 电容器柜",
+            "loopName": "AA2 402电容器柜",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          }
+        ],
+        "id": 185,
+        "name": "AA2  402电容器柜",
+        "leftLine": 1,
+        "rightLine": 1,
+        "type": "CAPACITOR_BOX_CABINET",
+        "imgDeviceUrl": null,
+        "imgUrl": "http://platform.dianyunwei.com/avatar/DISTRIBUTION_TYPE_MANAGE/电容柜-20210526011001205.svg",
+        "status": 1
+      },
+      {
+        "watches": [
+          {
+            "id": 600,
+            "name": "412-1 幕墙景观",
+            "loopName": "412-1幕墙景观",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 601,
+            "name": "412-2 应急电源1研发楼",
+            "loopName": "412-2应急电源1研发楼",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 602,
+            "name": "412-3 电话机房",
+            "loopName": "412-3电话机房",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 603,
+            "name": "412-4 屋顶消防风机",
+            "loopName": "412-4屋顶消防风机",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 604,
+            "name": "412-5 空调机房",
+            "loopName": "412-5空调机房",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 605,
+            "name": "412-6 水景风机AL-8",
+            "loopName": "412-6水景风机AL-8",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 606,
+            "name": "412-7 办公照明AL-5-6",
+            "loopName": "412-7办公照明AL-5-6",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          },
+          {
+            "id": 607,
+            "name": "412-8 西侧空调风机组",
+            "loopName": "412西侧空调风机组",
+            "imgUrl": "https://power.dianyunwei.com/assets/redEquipment.6285f54f.svg"
+          }
+        ],
+        "id": 186,
+        "name": "AA4出线柜",
+        "leftLine": 1,
+        "rightLine": 1,
+        "type": "HIGH_PRESSURE_CABINET",
+        "imgDeviceUrl": null,
+        "imgUrl": "http://platform.dianyunwei.com/avatar/DISTRIBUTION_TYPE_MANAGE/高压进线柜-20210513042414795.svg",
+        "status": 1
+      }
+    ]
+  }
+}

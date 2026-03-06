@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Layout, Menu, Dropdown, Avatar } from 'antd';
-import { DatabaseOutlined, SettingOutlined, AlertOutlined, ExclamationCircleOutlined, UserOutlined, DashboardOutlined, MenuOutlined, BarChartOutlined, EditOutlined, PictureOutlined, HighlightOutlined, TableOutlined, EyeOutlined, CodepenOutlined } from '@ant-design/icons';
+import { DatabaseOutlined, SettingOutlined, AlertOutlined, ExclamationCircleOutlined, UserOutlined,HomeOutlined, DashboardOutlined, MenuOutlined, BarChartOutlined, EditOutlined, PictureOutlined, HighlightOutlined, TableOutlined, EyeOutlined, CodepenOutlined } from '@ant-design/icons';
+import HomePage from './pages/HomePage.jsx';
 import ThingModelList from './pages/ThingModelList.jsx';
 import DeviceList from './pages/DeviceList.jsx';
 import AlarmRuleSetting from './pages/AlarmRuleSetting.jsx';
@@ -14,7 +15,9 @@ import MainGraphApp from './pages/GraphApp.tsx';
 import NodeTemplate from './pages/NodeTemplate.tsx'
 import TimeSeriesDataQuery from './pages/TimeSeriesDataQuery.jsx'
 import ModelViewer from './pages/ModelViewer.jsx'
+import Test3DView from './pages/Test3DView.jsx'
 import { menuApi } from './utils/api.js';
+import Cabinet3DEditor from './pages/Cabinet3DEditor.jsx';
 
 // 图标组件映射表
 const iconMap = {
@@ -31,7 +34,8 @@ const iconMap = {
   HighlightOutlined,
   TableOutlined,
   EyeOutlined,
-  CodepenOutlined
+  CodepenOutlined,
+  HomeOutlined
 };
 
 // 受保护的路由组件
@@ -273,7 +277,7 @@ const AppLayout = () => {
   const getSelectedKey = () => {
     const { pathname } = location;
     // 处理特殊路由映射
-    if (pathname === '/') return 'thing-models';
+    if (pathname === '/') return 'home';
     return pathname.substring(1); // 移除开头的斜杠
   };
   
@@ -346,7 +350,7 @@ function App() {
         
         {/* 受保护的路由 */}
         <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-          <Route index element={<ThingModelList />} />
+          <Route index element={<HomePage />} />
           <Route path="thing-models" element={<ThingModelList />} />
           <Route path="devices" element={<DeviceList />} />
           <Route path="alarm-rules" element={<AlarmRuleSetting />} />
@@ -359,6 +363,8 @@ function App() {
           <Route path="graph-svg" element={<IframePage />} />
           <Route path="time-series-data-query" element={<TimeSeriesDataQuery />} />
           <Route path="graph-3d" element={<ModelViewer />} />
+          <Route path="test-3d" element={<Test3DView />} />
+          <Route path="cabinet-3d" element={<Cabinet3DEditor/>} />
         </Route>
         
         {/* 重定向所有未匹配的路由到主页面 */}

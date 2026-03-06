@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="292px" height="114px" viewBox="0 0 292 114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 8@3x</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-86.000000, -455.000000)">
+            <g id="编组-8" transform="translate(86.000000, 455.000000)">
+                <rect id="矩形" fill-opacity="0" fill="#D8D8D8" x="0" y="0" width="292" height="114"></rect>
+                <rect id="矩形" fill="#FFC74D" x="145" y="96" width="2" height="18"></rect>
+                <circle id="椭圆形" stroke="#FFC74D" stroke-width="2" cx="146" cy="54" r="16"></circle>
+                <circle id="椭圆形备份" stroke="#FFC74D" stroke-width="2" cx="146" cy="79" r="16"></circle>
+                <rect id="矩形" fill="#FFC74D" x="145" y="0" width="2" height="38" rx="1"></rect>
+                <rect id="矩形" fill="#FFC74D" x="147" y="79" width="38" height="2" rx="1"></rect>
+                <rect id="矩形" fill="#FFC74D" x="184" y="79" width="2" height="22" rx="1"></rect>
+                <rect id="矩形" fill="#FFC74D" x="179" y="100" width="12" height="2" rx="1"></rect>
+                <rect id="矩形备份" fill="#FFC74D" x="181" y="103" width="8" height="2" rx="1"></rect>
+                <rect id="矩形备份-2" fill="#FFC74D" x="183" y="106" width="4" height="2" rx="1"></rect>
+                <text id="Y" font-family="PingFangSC-Regular, PingFang SC" font-size="20" font-weight="normal" fill="#FFC74D">
+                    <tspan x="140" y="86">Y</tspan>
+                </text>
+                <polygon id="三角形" stroke="#FFC74D" stroke-width="2" points="146.5 45 153 58 140 58"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

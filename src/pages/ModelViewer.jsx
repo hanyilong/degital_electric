@@ -36,21 +36,20 @@ const ModelViewer = () => {
   const [selectedKey, setSelectedKey] = useState(null);
   const [highlightedObject, setHighlightedObject] = useState(null);
   const [objectMap, setObjectMap] = useState(new Map()); // 存储key到3D对象的映射
+  const [modelDataList, setModelDataList] = useState([
+
+  ])
   const [modalVisible, setModalVisible] = useState(false); // 控制模态框显示
   const [selectedPartInfo, setSelectedPartInfo] = useState(null); // 存储选中部件的信息
   const [modelForm] = Form.useForm(); // 模型信息表单实例
-  const [extraInfo, setExtraInfo] = useState({ // 存储模型额外信息
-    modelType: '',
-    deviceCode: '',
-    deviceName: '',
-    installationDate: null,
-    manufacturer: ''
-  });
+  // 使用Map对象存储模型数据，以UUID为key
+  const [modelDataMap, setModelDataMap] = useState(new Map());
   const [isFormVisible, setIsFormVisible] = useState(false); // 控制表单可见性
   const [deviceTypes, setDeviceTypes] = useState([]); // 存储设备类型列表
   const [devices, setDevices] = useState([]); // 存储设备列表
   const [loadingDeviceTypes, setLoadingDeviceTypes] = useState(false); // 设备类型加载状态
   const [loadingDevices, setLoadingDevices] = useState(false); // 设备加载状态
+
 
   // 组件挂载时加载默认模型
   useEffect(() => {
@@ -65,17 +64,6 @@ const ModelViewer = () => {
         setLoadingDeviceTypes(true);
         // 这里应该是实际的API调用：
         const thingModels = await thingModelApi.getAll();
-
-        // 模拟API响应数据
-        // const mockDeviceTypes = [
-        //   { value: 'highVoltage', label: '高压设备' },
-        //   { value: 'lowVoltage', label: '低压设备' },
-        //   { value: 'transformer', label: '变压器' },
-        //   { value: 'cable', label: '电缆' },
-        //   { value: 'switchgear', label: '开关柜' },
-        //   { value: 'other', label: '其他' }
-        // ];
-        // 模拟网络延迟
         await new Promise(resolve => setTimeout(resolve, 500));
         setDeviceTypes(thingModels);
       } catch (error) {
@@ -106,7 +94,7 @@ const ModelViewer = () => {
       0.1,
       1000
     );
-    camera.position.set(0, 2, 5);
+    camera.position.set(15, 10, 15);
     cameraRef.current = camera;
 
     // 创建渲染器
@@ -156,6 +144,7 @@ const ModelViewer = () => {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controlsRef.current = controls;
+    controls.target.set(0, 2, 0); // 设置控制器目标点为模型中心上方一点
 
     // 添加灯光
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
@@ -211,7 +200,7 @@ const ModelViewer = () => {
       shaderPassRef.current.material.uniforms['resolution'].value.y = 1 / (height * window.devicePixelRatio);
     };
 
-    // 为渲染器DOM元素添加双击事件监听器
+    // 为渲染器DOM元素添加点击事件监听器（仅单击）
     const canvas = rendererRef.current.domElement;
     canvas.addEventListener('dblclick', handleClick);
 
@@ -223,7 +212,7 @@ const ModelViewer = () => {
       window.removeEventListener('resize', handleResize);
       const canvas = rendererRef.current?.domElement;
       if (canvas) {
-        canvas.removeEventListener('click', handleClick);
+        canvas.removeEventListener('dblclick', handleClick);
       }
 
       if (animationIdRef.current) {
@@ -370,11 +359,6 @@ const ModelViewer = () => {
     return false; // 阻止默认上传行为
   };
 
-  // 切换动画播放状态
-  const toggleAnimation = () => {
-    setIsPlaying(!isPlaying);
-  };
-
   // 重置模型
   const resetModel = () => {
     if (modelRef.current) {
@@ -383,6 +367,14 @@ const ModelViewer = () => {
       modelRef.current.scale.set(1, 1, 1);
     }
   };
+
+  const previewModel = () => {
+
+    console.log('预览模型', modelDataList);
+    // 新打开一个窗口预览模型
+    window.open(`${window.location.origin}/preview3d.html`, '_blank');
+
+  }
 
   // 处理树节点选择
   const handleTreeSelect = (selectedKeys) => {
@@ -393,6 +385,9 @@ const ModelViewer = () => {
     if (selectedObject) {
       // 高亮选中的对象
       console.log('Selected object:', selectedObject.name);
+
+      // 从 modelDataMap 中获取额外信息，避免未定义错误
+      const extraInfo = modelDataMap.get(selectedObject.uuid) || {};
 
       // 收集对象的基本信息
       const partInfo = {
@@ -405,13 +400,13 @@ const ModelViewer = () => {
         installationDate: extraInfo.installationDate,
         manufacturer: extraInfo.manufacturer
       };
-
-      // 更新表单
+      // 从modelDataList中查找对应的数据
+      const modelData = modelDataList.find(item => item.uuid === selectedObject.uuid);
+      if (modelData) {
+        Object.assign(partInfo, modelData);
+      }
       modelForm.setFieldsValue(partInfo);
-
-      // 显示表单
       setIsFormVisible(true);
-
       // 更新选中部件信息
       setSelectedPartInfo(selectedObject);
     }
@@ -478,8 +473,8 @@ const ModelViewer = () => {
     if (intersects.length > 0) {
       const selectedObject = intersects[0].object;
 
-      // 收集部件信息
-      const partInfo = {
+      // 收集部件信息用于模态框
+      const modalPartInfo = {
         name: selectedObject.name,
         uuid: selectedObject.uuid,
         type: selectedObject.type
@@ -488,15 +483,24 @@ const ModelViewer = () => {
       // 计算尺寸
       const box = new THREE.Box3().setFromObject(selectedObject);
       const size = box.getSize(new THREE.Vector3());
-      partInfo.size = size;
+      modalPartInfo.size = size;
 
       // 获取位置和旋转信息
-      partInfo.position = selectedObject.position;
-      partInfo.rotation = selectedObject.rotation;
+      modalPartInfo.position = selectedObject.position;
+      modalPartInfo.rotation = selectedObject.rotation;
+
+      // 检查modelDataList中是否有对应的存储数据
+      const storedData = modelDataList.find(item => item.uuid === selectedObject.uuid);
+      if (storedData) {
+        // 如果有存储数据，合并到modalPartInfo中
+        Object.assign(modalPartInfo, storedData);
+        console.log('从modelDataList加载存储的数据:', storedData);
+      }
 
       // 设置选中部件信息并显示模态框
-      setSelectedPartInfo(partInfo);
+      setSelectedPartInfo(modalPartInfo);
       setModalVisible(true);
+
     }
   };
 
@@ -509,34 +513,34 @@ const ModelViewer = () => {
     }));
   };
 
-  // 处理表单保存
-  const handleSave = () => {
-    modelForm.validateFields().then(values => {
-      // 准备保存的数据
-      const saveData = {
-        ...values,
-        partId: selectedKey, // 使用选中节点的key作为部件ID
-        timestamp: new Date().toISOString()
-      };
+  // 处理表单字段变化
+  const handleValuesChange = () => {
+    if (!selectedKey) return;
 
-      // 模拟保存到数据库
-      console.log('保存模型信息到数据库:', saveData);
+    // 获取选中的对象
+    const selectedObject = objectMap.get(selectedKey);
+    if (!selectedObject) return;
 
-      // 更新本地额外信息状态
-      setExtraInfo({
-        modelType: values.modelType || '',
-        deviceCode: values.deviceCode || '',
-        installationDate: values.installationDate || null,
-        manufacturer: values.manufacturer || ''
-      });
-      // 显示保存成功提示
-      message.success('模型信息保存成功！');
-    }).catch(errorInfo => {
-      console.log('表单验证失败:', errorInfo);
-      message.error('表单验证失败，请检查输入！');
-    });
+    // 获取当前表单的所有值
+    const values = modelForm.getFieldsValue();
+
+    // 准备保存的数据
+    const modelData = {
+      name: values.name || '',
+      modelType: values.modelType || '',
+      deviceCode: values.deviceCode || '',
+      deviceName: values.deviceName || '',
+      installationDate: values.installationDate || null,
+      manufacturer: values.manufacturer || ''
+    };
+    const existingIndex = modelDataList.findIndex(item => item.uuid === selectedObject.uuid);
+    // 更新或添加模型数据
+    if (existingIndex !== -1) {
+      modelDataList[existingIndex] = { ...modelData, uuid: selectedObject.uuid };
+    } else {
+      modelDataList.push({ ...modelData, uuid: selectedObject.uuid });
+    }
   };
-
   return (
     <Layout style={{ height: '100vh', overflow: 'hidden' }}>
       <Content style={{ padding: 0, margin: 0, overflow: 'hidden', position: 'relative' }}>
@@ -566,7 +570,7 @@ const ModelViewer = () => {
           <Button icon={<SaveOutlined />} onClick={resetModel}>
             另存为
           </Button>
-          <Button icon={<FundViewOutlined />} onClick={resetModel}>
+          <Button icon={<FundViewOutlined />} onClick={previewModel}>
             预览
           </Button>
         </div>
@@ -607,6 +611,7 @@ const ModelViewer = () => {
                 form={modelForm}
                 layout="vertical"
                 size="small"
+                onValuesChange={handleValuesChange}
               >
                 <h4 style={{ marginBottom: 12, color: '#666' }}>基本信息</h4>
                 <Form.Item name="name" label="名称" rules={[{ required: true, message: '请输入名称' }]}>
@@ -659,10 +664,6 @@ const ModelViewer = () => {
                     ))}
                   </Select>
                 </Form.Item>
-
-                <Form.Item style={{ textAlign: 'right', marginTop: 16 }}>
-                  <Button type="primary" icon={<SaveOutlined />} onClick={handleSave}>保存信息</Button>
-                </Form.Item>
               </Form>
             ) : (
               <div style={{ color: '#999', textAlign: 'center', padding: 20 }}>
@@ -694,6 +695,26 @@ const ModelViewer = () => {
             {selectedPartInfo.rotation && (
               <p><strong>旋转：</strong>({selectedPartInfo.rotation.x.toFixed(3)}, {selectedPartInfo.rotation.y.toFixed(3)}, {selectedPartInfo.rotation.z.toFixed(3)})</p>
             )}
+
+            {/* 显示扩展信息 */}
+            <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #eee' }}>
+              <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', color: '#666' }}>扩展信息</h4>
+              {selectedPartInfo.modelType && (
+                <p><strong>设备类型：</strong>{selectedPartInfo.modelType}</p>
+              )}
+              {selectedPartInfo.deviceCode && (
+                <p><strong>设备编码：</strong>{selectedPartInfo.deviceCode}</p>
+              )}
+              {selectedPartInfo.deviceName && (
+                <p><strong>设备名称：</strong>{selectedPartInfo.deviceName}</p>
+              )}
+              {selectedPartInfo.installationDate && (
+                <p><strong>安装日期：</strong>{selectedPartInfo.installationDate.format ? selectedPartInfo.installationDate.format('YYYY-MM-DD') : selectedPartInfo.installationDate}</p>
+              )}
+              {selectedPartInfo.manufacturer && (
+                <p><strong>制造商：</strong>{selectedPartInfo.manufacturer}</p>
+              )}
+            </div>
           </div>
         )}
       </Modal>

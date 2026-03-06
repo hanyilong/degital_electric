@@ -10,6 +10,7 @@ const api = axios.create({
 });
 
 export const apiBaseURL = api.defaults.baseURL;
+export const wsBaseURL = 'ws://localhost:8081/api/ws/alarms';
 
 // 请求拦截器
 api.interceptors.request.use(
@@ -71,7 +72,8 @@ export const deviceApi = {
   searchByConditions: (conditions) => api.get(`/device/search/conditions`, { params: conditions }),
   create: (data) => api.post('/device', data),
   update: (id, data) => api.put(`/device/${id}`, data),
-  delete: (id) => api.delete(`/device/${id}`)
+  delete: (id) => api.delete(`/device/${id}`),
+  static: (id) => api.get(`/device/static`)
 };
 
 // 时序数据API
@@ -149,7 +151,10 @@ export const alarmRecordApi = {
   getByConditions: (params) => api.post('/alarm-record/search', params),
   updateStatus: (id, status, resolveTime) => {
     return api.put(`/alarm-record/${id}/status`, { status, resolveTime });
-  }
+  },
+  staticByDescription: () => api.get(`/alarm-record/staticByDescription`),
+  staticByHour: () => api.get(`/alarm-record/staticByHour`),
+  
 };
 
 // 项目API

@@ -19,6 +19,17 @@ function TimeSeriesDataQuery() {
   const ensureInfluxTimeFormat = (timeStr) => {
     if (!timeStr) return null;
 
+    // 检查是否为Date对象
+    if (timeStr instanceof Date) {
+      const year = timeStr.getFullYear();
+      const month = String(timeStr.getMonth() + 1).padStart(2, '0');
+      const day = String(timeStr.getDate()).padStart(2, '0');
+      const hours = String(timeStr.getHours()).padStart(2, '0');
+      const minutes = String(timeStr.getMinutes()).padStart(2, '0');
+      const seconds = String(timeStr.getSeconds()).padStart(2, '0');
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
     const dateRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
     if (dateRegex.test(timeStr)) {
       return timeStr;
@@ -39,17 +50,21 @@ function TimeSeriesDataQuery() {
     }
   };
 
+
   // 处理查询
   const handleQuery = useCallback(async (values) => {
     setLoading(true);
     try {
       // 替换SQL语句中的时间占位符
       let processedSql = values.sql;
-      if (values.timeRange) {
-        let startTime = values.timeRange[0];
-        let endTime = values.timeRange[1];
+      if (values.startTime && values.endTime) {
+        let startTime = values.startTime;
+        let endTime = values.endTime;
+        
+        // 确保时间格式为InfluxDB支持的格式
         startTime = ensureInfluxTimeFormat(startTime);
         endTime = ensureInfluxTimeFormat(endTime);
+        
         if (startTime) {
           processedSql = processedSql.replace(/\$\{startTime\}/g, `'${startTime}'`);
         }
@@ -57,6 +72,7 @@ function TimeSeriesDataQuery() {
           processedSql = processedSql.replace(/\$\{endTime\}/g, `'${endTime}'`);
         }
       }
+
 
       // 调用后台API查询数据
       const response = await timeSeriesApi.queryBySql({
@@ -141,7 +157,17 @@ function TimeSeriesDataQuery() {
 
   // 格式化日期为字符串
   const formatDateToStr = (date) => {
-    if (!(date instanceof Date)) return null;
+    if (!(date instanceof Date)) {
+      // 如果不是Date对象，返回当前时间的字符串
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
@@ -171,6 +197,11 @@ function TimeSeriesDataQuery() {
       case '1d':
         startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
         break;
+      case '2d':
+        // 昨天
+        startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, 0, 0, 0);
+        endTime = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, 23, 59, 59);
+        break;
       case '3d':
         startTime = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 3, 0, 0, 0);
         break;
@@ -199,9 +230,10 @@ function TimeSeriesDataQuery() {
     const formattedEndTime = formatDateToStr(endTime);
     console.log('格式化后时间范围:', formattedStartTime, formattedEndTime);
 
-    // 使用Date对象直接设置时间范围，兼容RangePicker的valueFormat
+    // 使用格式化后的字符串设置时间范围，分别设置开始时间和结束时间
     form.setFieldsValue({
-      timeRange: [formattedStartTime, formattedEndTime]
+      startTime: formattedStartTime,
+      endTime: formattedEndTime
     });
 
   }, [form]);
@@ -473,19 +505,35 @@ function TimeSeriesDataQuery() {
             />
           </Form.Item>
 
-          <Form.Item
-            name="timeRange"
-            // label={<span style={{ fontWeight: '500', fontSize: '14px' }}>时间范围</span>}
-            rules={[{ required: false, message: '请选择查询时间范围' }]}
-          >
-            <RangePicker
-              showTime
-              format="YYYY-MM-DD HH:mm:ss"
-              valueFormat="YYYY-MM-DD HH:mm:ss"
-              style={{ width: '100%' }}
-              placeholder={['开始时间', '结束时间']}
-            />
-          </Form.Item>
+          <Row gutter={[8, 8]}>
+            <Col span={10}>
+              <Form.Item
+                name="startTime"
+                rules={[{ required: false, message: '请输入开始时间' }]}
+              >
+                <Input
+                  style={{ width: '100%' }}
+                  placeholder="开始时间 (YYYY-MM-DD HH:mm:ss)"
+                />
+              </Form.Item>
+            </Col>
+            <Col span={4}>
+              <Form.Item>
+                <div style={{ lineHeight: '32px', textAlign: 'center', color: '#999' }}>至</div>
+              </Form.Item>
+            </Col>
+            <Col span={10}>
+              <Form.Item
+                name="endTime"
+                rules={[{ required: false, message: '请输入结束时间' }]}
+              >
+                <Input
+                  style={{ width: '100%' }}
+                  placeholder="结束时间 (YYYY-MM-DD HH:mm:ss)"
+                />
+              </Form.Item>
+            </Col>
+          </Row>
           <Form.Item>
             <div style={{ marginTop: '1px' }}>
               <Row gutter={[8, 8]}>

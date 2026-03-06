@@ -16,6 +16,7 @@ function AlarmRuleSetting() {
     modelId: '',
     deviceCode: '',
     pointName: '',
+    pointDescription: '',
     conditionType: '',
     thresholdValue: '',
     alarmLevel: '',
@@ -162,11 +163,16 @@ function AlarmRuleSetting() {
         return;
       }
       
+      // 设置点位描述，根据点位名称从modelAttributes中获取
+      const selectedAttribute = modelAttributes.find(attr => attr.value === formData.pointName);
+      const pointDescription = selectedAttribute ? selectedAttribute.label : '';
+      const completeFormData = { ...formData, pointDescription };
+
       if (editingRule) {
-        await alarmRuleApi.update(editingRule.id, formData);
+        await alarmRuleApi.update(editingRule.id, completeFormData);
         message.success('更新成功');
       } else {
-        await alarmRuleApi.create(formData);
+        await alarmRuleApi.create(completeFormData);
         message.success('创建成功');
       }
       setVisible(false);
@@ -219,7 +225,11 @@ function AlarmRuleSetting() {
 
   const handleStatusChange = async (id, isActive) => {
     try {
-      await alarmRuleApi.updateStatus(id, isActive);
+      const rule = {
+        id: id,
+        isActive: isActive
+      }
+      await alarmRuleApi.updateStatus(id, rule);
       message.success('状态更新成功');
       fetchAlarmRules();
     } catch (error) {
@@ -306,13 +316,41 @@ function AlarmRuleSetting() {
       title: '创建时间',
       dataIndex: 'createTime',
       width: 180,
-      key: 'createTime'
+      key: 'createTime',
+      render: (time) => {
+        if (!time) return '-';
+        const date = new Date(time);
+        return date.toLocaleString('zh-CN', {
+          timeZone: 'Asia/Shanghai',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(/\//g, '-');
+      }
     },
     {
       title: '更新时间',
       dataIndex: 'updateTime',
       width: 180,
-      key: 'updateTime'
+      key: 'updateTime',
+      render: (time) => {
+        if (!time) return '-';
+        const date = new Date(time);
+        return date.toLocaleString('zh-CN', {
+          timeZone: 'Asia/Shanghai',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(/\//g, '-');
+      }
     },
     {
       title: '操作',

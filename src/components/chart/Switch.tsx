@@ -152,7 +152,7 @@ const SwitchComponent: React.FC<ComponentProps> = ({
     <div ref={componentRef} style={{ width: size.width, height: size.height }}>
       {/* antd 的圆形 Progress 组件，size 接收数字（宽高一致）或 { width, height } */}
       {/* <Progress type="circle" percent={componentProps.percent} size={size.width} /> */}
-      <Switch defaultChecked   />
+      <Switch defaultChecked size={componentProps.size} />
     </div>
   );
 };

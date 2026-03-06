@@ -1,0 +1,142 @@
+{
+    "code": 200,
+    "data": {
+        "sanKey": {
+            "nodes": [
+                {
+                    "name": "总"
+                },
+                {
+                    "name": "AH1"
+                },
+                {
+                    "name": "AH2"
+                },
+                {
+                    "name": "AH4"
+                },
+                {
+                    "name": "AH5"
+                },
+                {
+                    "name": "AH7"
+                },
+                {
+                    "name": "AH9"
+                },
+                {
+                    "name": "AH10"
+                },
+                {
+                    "name": "AH2>201 1#进线"
+                },
+                {
+                    "name": "AH4>211 1#变压器"
+                },
+                {
+                    "name": "AH5>245 联络"
+                },
+                {
+                    "name": "AH7>221 2#变压器"
+                },
+                {
+                    "name": "AH9>202 2#受电"
+                }
+            ],
+            "links": [
+                {
+                    "source": "总",
+                    "value": 0.0,
+                    "target": "AH1"
+                },
+                {
+                    "source": "AH1",
+                    "value": 4391004.5,
+                    "target": "AH1>AH2"
+                },
+                {
+                    "source": "AH1",
+                    "value": 0.0,
+                    "target": "AH1>AH4"
+                },
+                {
+                    "source": "AH1",
+                    "value": 0.0,
+                    "target": "AH1>AH5"
+                },
+                {
+                    "source": "AH1",
+                    "value": 852220.0,
+                    "target": "AH1>AH7"
+                },
+                {
+                    "source": "AH1",
+                    "value": 1547673.0,
+                    "target": "AH1>AH9"
+                },
+                {
+                    "source": "AH1",
+                    "value": 0.0,
+                    "target": "AH1>AH10"
+                },
+                {
+                    "source": "AH2",
+                    "value": "4391004.5",
+                    "target": "AH2>201 1#进线"
+                },
+                {
+                    "source": "AH4",
+                    "value": "0.0",
+                    "target": "AH4>211 1#变压器"
+                },
+                {
+                    "source": "AH5",
+                    "value": "0.0",
+                    "target": "AH5>245 联络"
+                },
+                {
+                    "source": "AH7",
+                    "value": "852220.0",
+                    "target": "AH7>221 2#变压器"
+                },
+                {
+                    "source": "AH9",
+                    "value": "1547673.0",
+                    "target": "AH9>202 2#受电"
+                },
+                {
+                    "source": "AH10",
+                    "value": "0.0",
+                    "target": "AH10>202-2 2#受电隔离"
+                }
+            ]
+        },
+        "pie": [
+            {
+                "name": "201 1#进线(标识540)",
+                "id": "540",
+                "value": "4391004.5"
+            },
+            {
+                "name": "202 2#受电(标识545)",
+                "id": "545",
+                "value": "1547673.0"
+            },
+            {
+                "name": "221 2#变压器(标识544)",
+                "id": "544",
+                "value": "852220.0"
+            },
+            {
+                "name": "201-2 1#进线隔离(标识539)",
+                "id": "539",
+                "value": "0.0"
+            },
+            {
+                "name": "其他",
+                "id": "-1",
+                "value": "0.0"
+            }
+        ]
+    }
+}

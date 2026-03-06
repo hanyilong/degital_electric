@@ -148,7 +148,7 @@ button.active {
 
   /* 左侧栏容器 */
   .leftbar-container {
-    width: 152px;
+    width: 120px;
     height: 100%;
     position: relative;
     border-right: 1px solid #dfe3e8;
@@ -192,7 +192,7 @@ button.active {
 
   /* 设置面板容器 */
   .settings-container {
-    width: 240px;
+    width: 220px;
     height: 100%;
     position: relative;
     border-left: 1px solid #dfe3e8;
@@ -683,7 +683,7 @@ button.active {
 
 /* 优化设置面板宽度 */
 .settings-container {
-  width: 280px;
+  width: 150px;
   overflow-y: auto;
 }
 

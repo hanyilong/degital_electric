@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>WebGL 3D 立方体双击示例</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #f0f0f0; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">双击立方体查看提示</div>
+    <canvas id="glCanvas"></canvas>
+
+    <script>
+        // 初始化 WebGL 上下文
+        const canvas = document.getElementById('glCanvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+        // 设置画布尺寸为窗口大小
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            gl.viewport(0, 0, canvas.width, canvas.height);
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // 如果不支持 WebGL 则提示
+        if (!gl) {
+            alert('你的浏览器不支持 WebGL，请升级或更换浏览器');
+        }
+
+        // ======================
+        // 1. 着色器程序
+        // ======================
+        // 顶点着色器源码
+        const vertexShaderSource = `
+            attribute vec4 aPosition;
+            attribute vec4 aColor;
+            uniform mat4 uModelViewMatrix;
+            uniform mat4 uProjectionMatrix;
+            varying vec4 vColor;
+            void main() {
+                gl_Position = uProjectionMatrix * uModelViewMatrix * aPosition;
+                vColor = aColor;
+            }
+        `;
+
+        // 片元着色器源码
+        const fragmentShaderSource = `
+            precision mediump float;
+            varying vec4 vColor;
+            void main() {
+                gl_FragColor = vColor;
+            }
+        `;
+
+        // 创建并编译着色器
+        function createShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('着色器编译失败:', gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        // 创建着色器程序
+        function createProgram(gl, vertexShader, fragmentShader) {
+            const program = gl.createProgram();
+            gl.attachShader(program, vertexShader);
+            gl.attachShader(program, fragmentShader);
+            gl.linkProgram(program);
+            if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+                console.error('程序链接失败:', gl.getProgramInfoLog(program));
+                gl.deleteProgram(program);
+                return null;
+            }
+            return program;
+        }
+
+        // 初始化着色器程序
+        const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+        const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+        const program = createProgram(gl, vertexShader, fragmentShader);
+
+        // 获取着色器变量位置
+        const programInfo = {
+            program: program,
+            attribLocations: {
+                aPosition: gl.getAttribLocation(program, 'aPosition'),
+                aColor: gl.getAttribLocation(program, 'aColor'),
+            },
+            uniformLocations: {
+                uModelViewMatrix: gl.getUniformLocation(program, 'uModelViewMatrix'),
+                uProjectionMatrix: gl.getUniformLocation(program, 'uProjectionMatrix'),
+            },
+        };
+
+        // ======================
+        // 2. 立方体数据
+        // ======================
+        // 立方体顶点坐标（x,y,z）和颜色（r,g,b,a）
+        const cubeVertices = new Float32Array([
+            // 前面
+            -1, -1,  1,  1, 0, 0, 1,
+             1, -1,  1,  0, 1, 0, 1,
+             1,  1,  1,  0, 0, 1, 1,
+            -1,  1,  1,  1, 1, 0, 1,
+            // 背面
+            -1, -1, -1,  1, 1, 0, 1,
+             1, -1, -1,  0, 0, 1, 1,
+             1,  1, -1,  0, 1, 0, 1,
+            -1,  1, -1,  1, 0, 0, 1,
+            // 顶面
+            -1,  1, -1,  1, 0, 1, 1,
+             1,  1, -1,  0, 1, 1, 1,
+             1,  1,  1,  0, 0, 1, 1,
+            -1,  1,  1,  1, 1, 1, 1,
+            // 底面
+            -1, -1, -1,  1, 1, 1, 1,
+             1, -1, -1,  0, 0, 1, 1,
+             1, -1,  1,  0, 1, 1, 1,
+            -1, -1,  1,  1, 0, 1, 1,
+            // 右面
+             1, -1, -1,  1, 0, 0, 1,
+             1,  1, -1,  1, 1, 0, 1,
+             1,  1,  1,  1, 0, 1, 1,
+             1, -1,  1,  1, 1, 1, 1,
+            // 左面
+            -1, -1, -1,  0, 1, 0, 1,
+            -1,  1, -1,  0, 1, 1, 1,
+            -1,  1,  1,  0, 0, 1, 1,
+            -1, -1,  1,  0, 1, 0, 1,
+        ]);
+
+        // 立方体索引（绘制三角形）
+        const cubeIndices = new Uint16Array([
+            0, 1, 2, 0, 2, 3,       // 前面
+            4, 5, 6, 4, 6, 7,       // 背面
+            8, 9, 10, 8, 10, 11,    // 顶面
+            12, 13, 14, 12, 14, 15, // 底面
+            16, 17, 18, 16, 18, 19, // 右面
+            20, 21, 22, 20, 22, 23  // 左面
+        ]);
+
+        // 创建缓冲区
+        const vertexBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, cubeVertices, gl.STATIC_DRAW);
+
+        const indexBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, cubeIndices, gl.STATIC_DRAW);
+
+        // ======================
+        // 加载 gl-matrix 库并初始化剩余逻辑
+        // ======================
+        function initAfterGLMatrixLoaded() {
+            // 获取 gl-matrix 库的核心对象
+            const mat4 = glMatrix.mat4;
+            const vec3 = glMatrix.vec3;
+
+            // ======================
+            // 3. 矩阵和视角设置
+            // ======================
+            // 投影矩阵（透视投影）
+            const projectionMatrix = mat4.create();
+            mat4.perspective(projectionMatrix, 
+                Math.PI / 4,                // 视角（45度）
+                canvas.width / canvas.height, // 宽高比
+                0.1,                        // 近裁剪面
+                100.0                       // 远裁剪面
+            );
+
+            // 模型视图矩阵（控制立方体位置和旋转）
+            const modelViewMatrix = mat4.create();
+            mat4.translate(modelViewMatrix, modelViewMatrix, [0.0, 0.0, -6.0]); // 向后移动6个单位
+
+            // ======================
+            // 4. 渲染函数
+            // ======================
+            let cubeRotation = 0.0; // 立方体旋转角度
+
+            function render() {
+                // 清除画布
+                gl.clearColor(0.1, 0.1, 0.1, 1.0);
+                gl.clearDepth(1.0);
+                gl.enable(gl.DEPTH_TEST);
+                gl.depthFunc(gl.LEQUAL);
+                gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+                // 更新旋转角度
+                cubeRotation += 0.01;
+                mat4.identity(modelViewMatrix);
+                mat4.translate(modelViewMatrix, modelViewMatrix, [0.0, 0.0, -6.0]);
+                mat4.rotate(modelViewMatrix, modelViewMatrix, cubeRotation, [1, 1, 1]); // 绕x,y,z轴旋转
+
+                // 使用着色器程序
+                gl.useProgram(programInfo.program);
+
+                // 绑定顶点缓冲区
+                gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+                
+                // 设置顶点位置属性
+                gl.vertexAttribPointer(
+                    programInfo.attribLocations.aPosition,
+                    3,          // 每个顶点3个值（x,y,z）
+                    gl.FLOAT,   // 数据类型
+                    false,      // 是否归一化
+                    7 * Float32Array.BYTES_PER_ELEMENT, // 步长（每个顶点7个值：3个位置+4个颜色）
+                    0           // 偏移量
+                );
+                gl.enableVertexAttribArray(programInfo.attribLocations.aPosition);
+
+                // 设置顶点颜色属性
+                gl.vertexAttribPointer(
+                    programInfo.attribLocations.aColor,
+                    4,          // 每个顶点4个值（r,g,b,a）
+                    gl.FLOAT,   // 数据类型
+                    false,      // 是否归一化
+                    7 * Float32Array.BYTES_PER_ELEMENT, // 步长
+                    3 * Float32Array.BYTES_PER_ELEMENT  // 偏移量（跳过3个位置值）
+                );
+                gl.enableVertexAttribArray(programInfo.attribLocations.aColor);
+
+                // 设置矩阵uniform变量
+                gl.uniformMatrix4fv(
+                    programInfo.uniformLocations.uModelViewMatrix,
+                    false,
+                    modelViewMatrix
+                );
+                gl.uniformMatrix4fv(
+                    programInfo.uniformLocations.uProjectionMatrix,
+                    false,
+                    projectionMatrix
+                );
+
+                // 绑定索引缓冲区并绘制立方体
+                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+                gl.drawElements(gl.TRIANGLES, cubeIndices.length, gl.UNSIGNED_SHORT, 0);
+
+                // 请求下一帧渲染
+                requestAnimationFrame(render);
+            }
+
+            // ======================
+            // 5. 双击拾取立方体功能
+            // ======================
+            function getMousePosition(canvas, event) {
+                // 获取鼠标在画布中的归一化坐标（-1 到 1）
+                const rect = canvas.getBoundingClientRect();
+                return {
+                    x: ((event.clientX - rect.left) / canvas.width) * 2 - 1,
+                    y: -((event.clientY - rect.top) / canvas.height) * 2 + 1
+                };
+            }
+
+            function checkCubeClick(mousePos) {
+                // 创建拾取矩阵（投影矩阵 * 模型视图矩阵的逆矩阵）
+                const viewProjectionMatrix = mat4.create();
+                mat4.multiply(viewProjectionMatrix, projectionMatrix, modelViewMatrix);
+                const invViewProjectionMatrix = mat4.create();
+                mat4.invert(invViewProjectionMatrix, viewProjectionMatrix);
+
+                // 将鼠标坐标转换为世界空间射线
+                const rayNear = vec3.fromValues(mousePos.x, mousePos.y, -1);
+                const rayFar = vec3.fromValues(mousePos.x, mousePos.y, 1);
+                vec3.transformMat4(rayNear, rayNear, invViewProjectionMatrix);
+                vec3.transformMat4(rayFar, rayFar, invViewProjectionMatrix);
+                vec3.subtract(rayFar, rayFar, rayNear);
+                vec3.normalize(rayFar, rayFar);
+
+                // 立方体AABB包围盒（中心在原点，边长2）
+                const boxMin = vec3.fromValues(-1, -1, -1);
+                const boxMax = vec3.fromValues(1, 1, 1);
+
+                // 射线与AABB包围盒相交检测
+                return rayIntersectsAABB(rayNear, rayFar, boxMin, boxMax);
+            }
+
+            function rayIntersectsAABB(rayOrigin, rayDir, boxMin, boxMax) {
+                // AABB 包围盒射线相交检测（简化版）
+                let tMin = (boxMin[0] - rayOrigin[0]) / rayDir[0];
+                let tMax = (boxMax[0] - rayOrigin[0]) / rayDir[0];
+                if (tMin > tMax) [tMin, tMax] = [tMax, tMin];
+
+                let tyMin = (boxMin[1] - rayOrigin[1]) / rayDir[1];
+                let tyMax = (boxMax[1] - rayOrigin[1]) / rayDir[1];
+                if (tyMin > tyMax) [tyMin, tyMax] = [tyMax, tyMin];
+                if (tMin > tyMax || tyMin > tMax) return false;
+                tMin = Math.max(tMin, tyMin);
+                tMax = Math.min(tMax, tyMax);
+
+                let tzMin = (boxMin[2] - rayOrigin[2]) / rayDir[2];
+                let tzMax = (boxMax[2] - rayOrigin[2]) / rayDir[2];
+                if (tzMin > tzMax) [tzMin, tzMax] = [tzMax, tzMin];
+                if (tMin > tzMax || tzMin > tMax) return false;
+
+                return true;
+            }
+
+            // 绑定双击事件
+            canvas.addEventListener('dblclick', (event) => {
+                const mousePos = getMousePosition(canvas, event);
+                if (checkCubeClick(mousePos)) {
+                    alert('hello world');
+                }
+            });
+
+            // 启动渲染
+            render();
+        }
+
+        // ======================
+        // 加载 gl-matrix 库
+        // ======================
+        // 方式1：动态加载 CDN 库（推荐）
+        const script = document.createElement('script');
+        script.src = './src/gl-matrix-min.js';
+        script.onload = function() {
+            console.log('gl-matrix 库加载完成');
+            initAfterGLMatrixLoaded(); // 库加载完成后初始化剩余逻辑
+        };
+        script.onerror = function() {
+            alert('gl-matrix 库加载失败，请检查网络或更换CDN地址');
+        };
+        document.body.appendChild(script);
+
+        // 方式2：如果 CDN 加载失败，也可以手动引入本地库
+        // 请将下面的注释取消，并将路径改为你本地的 gl-matrix 库路径
+        // import * as glMatrix from './gl-matrix-min.js';
+        // initAfterGLMatrixLoaded();
+    </script>
+</body>
+</html>

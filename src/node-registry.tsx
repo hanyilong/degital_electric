@@ -6,11 +6,15 @@ import SwitchComponent from './components/chart/Switch.tsx';
 import ButtonComponent from './components/chart/Button.tsx';
 import IFrameComponent from './components/chart/IFrame.tsx';
 import VideoComponent from './components/chart/Video.tsx';
+import OnceElectricBoxComponent from './components/chart/OnceElectricBox.tsx';
 import LineChart from './components/chart/LineChart.tsx';
 import ScatterChart from './components/chart/ScatterChart.tsx';
 import PieChart from './components/chart/PieChart.tsx';
 import TableComponent from './components/chart/Table.tsx';
 import Percent from './components/chart/Percent.tsx';
+import EnergyFLowComponent from './components/chart/EnergyFLow.tsx';
+
+const iconSize = 30;
 
 // 注册系统组件节点
 register({
@@ -103,6 +107,22 @@ register({
     }
 })
 
+register({
+    shape: 'system-component-once-electric-box',
+    width: 50,
+    height: 50,
+    component: ({ node }) => {
+        return <OnceElectricBoxComponent initialWidth={50} initialHeight={50} containerNode={node} />;
+    }
+})
+register({
+    shape: 'system-component-energy-flow',
+    width: 50,
+    height: 50,
+    component: ({ node }) => {
+        return <EnergyFLowComponent initialWidth={50} initialHeight={50} containerNode={node} />;
+    }
+})
 // 定义SVG嵌入节点
 Node.define({
     shape: 'svg-embed-node',
@@ -201,8 +221,8 @@ Graph.registerNode(
     'static-text-icon',
     {
         inherit: 'image',
-        width: 40,
-        height: 40,
+        width: iconSize,
+        height: iconSize,
         attrs: {
             body: {
                 strokeWidth: 1,
@@ -226,8 +246,8 @@ Graph.registerNode(
     'custom-rect-icon',
     {
         inherit: 'image',
-        width: 40,
-        height: 40,
+        width: iconSize,
+        height: iconSize,
         attrs: {
             body: {
                 strokeWidth: 1,
@@ -251,8 +271,8 @@ Graph.registerNode(
     'custom-line-icon',
     {
         inherit: 'image',
-        width: 40,
-        height: 40,
+        width: iconSize,
+        height: iconSize,
         attrs: {
             body: {
                 strokeWidth: 2,
@@ -276,8 +296,8 @@ Graph.registerNode(
     'custom-circle-icon',
     {
         inherit: 'image',
-        width: 40,
-        height: 40,
+        width: iconSize,
+        height: iconSize,
         attrs: {
             body: {
                 strokeWidth: 2,
@@ -300,8 +320,8 @@ Graph.registerNode(
     'customImage',
     {
         inherit: 'rect',
-        width: 40,
-        height: 40,
+        width: iconSize,
+        height: iconSize,
         markup: [
             { tagName: 'rect', selector: 'body' },
             { tagName: 'image' },
@@ -328,8 +348,8 @@ Graph.registerNode(
     'svgImage',
     {
         inherit: 'rect',
-        width: 40,
-        height: 40,
+        width: iconSize,
+        height: iconSize,
         markup: [
             { tagName: 'rect', selector: 'body' },
             { tagName: 'image' },
@@ -355,12 +375,12 @@ Graph.registerNode(
     'systemComponent',
     {
         inherit: 'image',
-        width: 40,
-        height: 40,
+        width: iconSize,
+        height: iconSize,
         attrs: {
             image: {
-                width: 40,
-                height: 40,
+                width: iconSize,
+                height: iconSize,
                 refX: 0,
                 refY: 0,
             },
@@ -374,8 +394,8 @@ Graph.registerNode(
     'customSvg',
     {
         inherit: 'rect',
-        width: 50,
-        height: 50,
+        width: iconSize,
+        height: iconSize,
         markup: [
             { tagName: 'rect', selector: 'body' },
             { tagName: 'image' },
@@ -387,8 +407,8 @@ Graph.registerNode(
                 // fill: '#5F95FF',
             },
             image: {
-                width: 50,
-                height: 50,
+                width: iconSize,
+                height: iconSize,
                 refX: 0,
                 refY: 0,
             },

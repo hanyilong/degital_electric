@@ -624,14 +624,40 @@ function DeviceList() {
       dataIndex: 'createTime',
       width: 180,
       key: 'createTime',
-      render: (time) => time ? time.substring(0, 16) : '-'
+      render: (time) => {
+        if (!time) return '-';
+        const date = new Date(time);
+        return date.toLocaleString('zh-CN', {
+          timeZone: 'Asia/Shanghai',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(/\//g, '-');
+      }
     },
     {
       title: '更新时间',
       dataIndex: 'updateTime',
       width: 180,
       key: 'updateTime',
-      render: (time) => time ? time.substring(0, 16) : '-'
+      render: (time) => {
+        if (!time) return '-';
+        const date = new Date(time);
+        return date.toLocaleString('zh-CN', {
+          timeZone: 'Asia/Shanghai',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(/\//g, '-');
+      }
     },
     {
       title: '操作',
@@ -650,7 +676,7 @@ function DeviceList() {
   const statusOptions = [
     { label: '在线', value: 'online' },
     { label: '离线', value: 'offline' },
-    { label: '未知', value: 'unknown' }
+    { label: '维修', value: 'repairing' }
   ];
 
   const deviceTypeOptions = [
@@ -666,7 +692,21 @@ function DeviceList() {
       title: '记录时间',
       dataIndex: 'recordTime',
       width: 200,
-      key: 'recordTime'
+      key: 'recordTime',
+      render: (time) => {
+        if (!time) return '-';
+        const date = new Date(time);
+        return date.toLocaleString('zh-CN', {
+          timeZone: 'Asia/Shanghai',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(/\//g, '-');
+      }
     },
     {
       title: '点位名称',
